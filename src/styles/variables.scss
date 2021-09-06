@@ -1,0 +1,39 @@
+// sidebar
+$menuText: #FFFFFF;
+$menuActiveText: #FFFFFF;
+
+$menuActiveBg: hsla(213, 100%, 90%, 0.3); //激活颜色
+
+$subMenuActiveText: #FFFFFF;
+
+$menuBg: #0075FF;
+$menuHover: hsla(213, 100%, 90%, 0.3);
+
+$subMenuBg: #0069E4;
+$subMenuHover: hsla(213, 100%, 90%, 0.3); //鼠标经过颜色
+
+$sideBarWidth: 190px;
+
+$menuRootHover: hsla(213, 100%, 90%, 0.2);
+
+
+//tagsView
+$tagsViewHover: #0075FF; //边框颜色
+$tagsViewActive: #0075FF; //激活颜色
+
+//topMenu
+$topMenuActiveBorder: #0075FF;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  menuActiveBg: $menuActiveBg;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
+}
