@@ -240,6 +240,7 @@ export default {
       }
 
       &.active {
+        border: 1px solid transparent !important;
         background-color: $tagsViewActive;
         color: #fff;
 
