@@ -6,8 +6,8 @@
       <top-menu class="top-menu" />
     </div>
     <div class="navbar-right">
-      <span class="role-name">当前账号：九江市支队-办公室主任-开发测试</span>
-      <span style="color: red" @click="logout">退出</span>
+      <span class="role-name">当前账号：开发测试</span>
+      <span style="color: red;cursor: pointer;margin-left: 10px" @click="logout">退出</span>
     </div>
   </div>
 </template>
