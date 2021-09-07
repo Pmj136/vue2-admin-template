@@ -6,13 +6,14 @@
   }
 }
 
-@mixin scrollBar($bgColor:#d3dce6,$width:6px,$thumbColor:#99a9bf) {
+@mixin scrollBar($bgColor:#d3dce6,$size:6px,$thumbColor:#99a9bf) {
   &::-webkit-scrollbar-track-piece {
     background: $bgColor;
   }
 
   &::-webkit-scrollbar {
-    width: $width;
+    width: $size;
+    height: $size;
   }
 
   &::-webkit-scrollbar-thumb {

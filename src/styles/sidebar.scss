@@ -66,10 +66,21 @@
       border: none;
       height: 100%;
       width: 100% !important;
+      background-color: transparent;
+
+      .el-menu-item {
+        background-color: $menuBg !important;
+      }
     }
 
-    .el-menu .el-menu--inline {
-      background-color: $subMenuBg !important;
+    .el-menu--inline {
+      .el-menu-item {
+        background-color: $subMenuBg !important;
+      }
+    }
+
+    .el-menu-item:hover {
+      background-color: $menuHover !important;
     }
 
     // menu hover
@@ -86,10 +97,6 @@
 
     .el-menu-item.is-active {
       background-color: $menuActiveBg !important;
-    }
-
-    .el-menu-item:hover {
-      background-color: $menuHover !important;
     }
   }
 
