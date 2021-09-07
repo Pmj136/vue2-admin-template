@@ -3,10 +3,11 @@
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
+        :key="commonPrefixPath"
+        unique-opened
         :default-active="$route.path"
         :collapse="isCollapse"
         :text-color="variables.menuText"
-        :unique-opened="false"
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
         mode="vertical"
@@ -46,11 +47,14 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened
+    },
+    commonPrefixPath() {
+      return getCommonPrefixPath(this)
     }
   },
   methods: {
     getBasePath(route) {
-      return path.resolve(getCommonPrefixPath(this), route)
+      return path.resolve(this.commonPrefixPath, route)
     }
   }
 }

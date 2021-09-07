@@ -1,20 +1,16 @@
 // sidebar
+$menuBg: #0075FF;
+$menuActiveBg: hsla(213, 100%, 80%, 0.4); //激活颜色
+$menuHover: hsla(213, 100%, 80%, 0.4);
 $menuText: #FFFFFF;
 $menuActiveText: #FFFFFF;
 
-$menuActiveBg: hsla(213, 100%, 90%, 0.3); //激活颜色
 
 $subMenuActiveText: #FFFFFF;
-
-$menuBg: #0075FF;
-$menuHover: hsla(213, 100%, 90%, 0.3);
-
 $subMenuBg: #0069E4;
-$subMenuHover: hsla(213, 100%, 90%, 0.3); //鼠标经过颜色
+$subMenuHover: hsla(213, 100%, 90%, 0.2); //鼠标经过颜色
 
 $sideBarWidth: 190px;
-
-$menuRootHover: hsla(213, 100%, 90%, 0.2);
 
 
 //tagsView
