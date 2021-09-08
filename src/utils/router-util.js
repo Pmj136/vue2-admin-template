@@ -10,6 +10,7 @@ export function getPageTitle(pageTitle) {
 }
 
 export function reWriteMatched(to) {
+  if (!to.meta.keepAlive) return
   if (to.matched && to.matched.length > 2) {
     for (let i = 0; i < to.matched.length; i++) {
       const element = to.matched[i]
