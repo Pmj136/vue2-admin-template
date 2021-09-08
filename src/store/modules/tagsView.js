@@ -67,17 +67,12 @@ const mutations = {
 }
 
 const actions = {
-  addView({ dispatch }, view) {
-    dispatch('addVisitedView', view)
-    dispatch('addCachedView', view)
-  },
   addVisitedView({ commit }, view) {
     commit('ADD_VISITED_VIEW', view)
   },
   addCachedView({ commit }, view) {
     commit('ADD_CACHED_VIEW', view)
   },
-
   delView({ dispatch, state }, view) {
     return new Promise(resolve => {
       dispatch('delVisitedView', view)

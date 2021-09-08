@@ -105,9 +105,12 @@ export default {
       }
     },
     addTags() {
-      const { name } = this.$route
+      const { name, meta } = this.$route
       if (name) {
-        this.$store.dispatch('tagsView/addView', this.$route)
+        this.$store.dispatch('tagsView/addVisitedView', this.$route)
+      }
+      if (meta.keepAlive) {
+        this.$store.dispatch('tagsView/addCachedView', this.$route)
       }
       return false
     },
