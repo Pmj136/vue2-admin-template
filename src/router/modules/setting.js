@@ -4,6 +4,7 @@ export default [
   {
     path: '/setting',
     component: Layout,
+    redirect: '/setting/perm',
     meta: {
       title: '系统设置'
     },
@@ -12,7 +13,7 @@ export default [
         path: 'perm',
         name: 'Permission',
         component: () => import('@/views/setting/Permission'),
-        meta: { title: '权限设置', icon: 'el-icon-s-help',keepAlive:true }
+        meta: { title: '权限设置', icon: 'el-icon-s-help', keepAlive: true }
       },
       {
         path: 'role',

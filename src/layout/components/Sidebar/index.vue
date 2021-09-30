@@ -36,11 +36,13 @@ export default {
   computed: {
     ...mapState({
       sidebar: state => state.app.sidebar,
-      showLogo: state => state.settings.sidebarLogo
+      showLogo: state => state.settings.sidebarLogo,
+      permissionRoutes: state => state.permission.routes
     }),
     routes() {
       const currPath = this.$route.path
-      return this.$router.options.routes.filter(v => currPath.includes(v.path) && !v.hidden)[0].children
+      if (this.permissionRoutes.length === 0) return []
+      return this.permissionRoutes.filter(v => currPath.includes(v.path) && !v.hidden)[0].children
     },
     variables() {
       return variables

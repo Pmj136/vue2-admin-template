@@ -1,25 +1,15 @@
-
-const tokens = {
+const list = {
   admin: {
-    token: 'admin-token'
-  },
-  editor: {
-    token: 'editor-token'
-  }
-}
-
-const users = {
-  'admin-token': {
+    token: 'Jj335j2rvoiwgnoew345nknoi35nt43o34noj',
     roles: ['admin'],
-    introduction: 'I am a super administrator',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Super Admin'
+    permissions: ['user:add', 'user:delete'],
+    menus: ['/home', '/home/example', '/home/example/item1', '/home/example/item2', '/setting', '/setting/perm']
   },
-  'editor-token': {
-    roles: ['editor'],
-    introduction: 'I am an editor',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Normal Editor'
+  user: {
+    token: 'ag3itj3534jtlkjtl34jtkj34kltjlk34jtl3',
+    roles: ['user'],
+    permissions: [],
+    menus: ['/home', '/home/example', '/home/example/item1']
   }
 }
 
@@ -30,46 +20,14 @@ module.exports = [
     type: 'post',
     response: config => {
       const { username } = config.body
-      const token = tokens[username]
-
-      // mock error
-      if (!token) {
-        return {
-          code: 60204,
-          message: 'Account and password are incorrect.'
-        }
-      }
+      const data = list[username]
 
       return {
         code: 20000,
-        data: token
+        data
       }
     }
   },
-
-  // get user info
-  {
-    url: '/vue-admin-template/user/info\.*',
-    type: 'get',
-    response: config => {
-      const { token } = config.query
-      const info = users[token]
-
-      // mock error
-      if (!info) {
-        return {
-          code: 50008,
-          message: 'Login failed, unable to get user details.'
-        }
-      }
-
-      return {
-        code: 20000,
-        data: info
-      }
-    }
-  },
-
   // user logout
   {
     url: '/vue-admin-template/user/logout',

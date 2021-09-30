@@ -3,7 +3,7 @@ import store from './store'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import { getToken } from '@/utils/storage' // get token from cookie
 import { getPageTitle, reWriteMatched } from '@/utils/router-util'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
@@ -17,27 +17,27 @@ router.beforeEach(async(to, from, next) => {
 
   // set page title
   document.title = getPageTitle(to.meta.title)
-
   // determine whether the user has logged in
   const hasToken = getToken()
-
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next({ replace: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      const permRoutes = store.state.permission.routes
+      if (permRoutes.length > 0) {
         next()
       } else {
         try {
-          // get user info
-          await store.dispatch('user/getInfo')
-
-          next()
-        } catch (error) {
-          // remove token and go to login page to re-login
+          const routes = await store.dispatch('permission/generateRoutes')
+          for (const route of routes) {
+            router.addRoute(route)
+          }
+          // 404 page must be placed at the end !!!
+          router.addRoute({ path: '*', redirect: '/404', hidden: true })
+          next({ ...to, replace: true })
+        } catch (e) {
           await store.dispatch('user/resetToken')
           Message.error(error || 'Has Error')
           next(`/login?redirect=${to.path}`)

@@ -1,16 +1,19 @@
 // sidebar
-$menuBg: #0075FF;
+$sideBarWidth: 190px; //宽度
+
+$menuHeight: 50px; //每个menu的高度
+
+$menuBg: #0075FF; //menu默认背景色
+$menuHover: hsla(213, 100%, 80%, 0.4); //鼠标经过颜色
+
 $menuActiveBg: hsla(213, 100%, 80%, 0.4); //激活颜色
-$menuHover: hsla(213, 100%, 80%, 0.4);
-$menuText: #FFFFFF;
-$menuActiveText: #FFFFFF;
+$menuText: #FFFFFF; //默认文字颜色
+$menuActiveText: #FFFFFF; //menu激活时文字颜色
 
+$subMenuBg: #0069E4;//submenu默认背景色
+$subMenuHover: hsla(213, 100%, 90%, 0.2); //submenu鼠标经过颜色
 
-$subMenuActiveText: #FFFFFF;
-$subMenuBg: #0069E4;
-$subMenuHover: hsla(213, 100%, 90%, 0.2); //鼠标经过颜色
-
-$sideBarWidth: 190px;
+$subMenuActiveText: #FFFFFF; //submenu激活时文字颜色
 
 
 //tagsView

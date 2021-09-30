@@ -6,6 +6,7 @@
         ref="tag"
         :key="tag.path"
         :class="isActive(tag)?'active':''"
+        replace
         :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
         class="tags-view-item"
         @click.middle.native="!isAffix(tag)?closeSelectedTag(tag):''"

@@ -2,12 +2,13 @@
   <div>
     <h2>示例1</h2>
     <input type="text" />
+    <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Item1'
+  name: 'Item1',
 }
 </script>
 

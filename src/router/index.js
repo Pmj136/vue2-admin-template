@@ -6,7 +6,7 @@ import { default as homeRoutes } from './modules/home'
 import { default as settingRoutes } from './modules/setting'
 
 Vue.use(Router)
-const routes = [
+export const constantRoutes = [
   {
     path: '/redirect',
     component: Layout,
@@ -32,20 +32,25 @@ const routes = [
     path: '/',
     redirect: '/home',
     hidden: true
-  },
-  ...homeRoutes,
-  ...settingRoutes,
+  }
+]
 
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+export const asyncRoutes = [
+  ...homeRoutes,
+  ...settingRoutes
 ]
 const createRouter = () => new Router({
   mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes
+  routes: constantRoutes
 })
 
 const router = createRouter()
+
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error => error)
+}
 
 export function resetRouter() {
   const newRouter = createRouter()

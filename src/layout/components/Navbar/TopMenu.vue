@@ -15,7 +15,7 @@ export default {
       return getCommonPrefixPath(this)
     },
     menus() {
-      return this.$router.options.routes.filter(v => !v.hidden && v.meta && v.meta.title)
+      return this.$store.state.permission.routes.filter(v => !v.hidden && v.meta && v.meta.title)
     }
   }
 }

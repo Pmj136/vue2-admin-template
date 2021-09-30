@@ -19,7 +19,7 @@ export default [
             path: 'item1',
             name: 'Item1',
             component: () => import('@/views/home/example/Item1'),
-            meta: { title: '子级页面1', affix: true, keepAlive: true }
+            meta: { title: '子级页面1', keepAlive: true }
           },
           {
             path: 'item2',
