@@ -1,17 +1,16 @@
 const TokenKey = 'token'
 const MenuKey = 'menus'
+const PermsKey = 'perms'
+const RolesKey = 'roles'
 
 //base
 export function getItem(key) {
   const val = sessionStorage.getItem(key)
-  if (typeof val === 'object') {
-    return JSON.parse(val)
-  }
-  return val
+  return JSON.parse(val)
 }
 
 export function setItem(key, val) {
-  return sessionStorage.setItem(key, typeof val === 'object' ? JSON.stringify(val) : val)
+  return sessionStorage.setItem(key, JSON.stringify(val))
 }
 
 export function removeItem(key) {
@@ -42,4 +41,20 @@ export function setMenus(val) {
 
 export function getMenus() {
   return getItem(MenuKey)
+}
+
+export function setPerms(val) {
+  return setItem(PermsKey, val)
+}
+
+export function getPerms() {
+  return getItem(PermsKey)
+}
+
+export function setRoles(val) {
+  return setItem(RolesKey, val)
+}
+
+export function getRoles() {
+  return getItem(RolesKey)
 }

@@ -19,13 +19,13 @@ export default [
             path: 'item1',
             name: 'Item1',
             component: () => import('@/views/home/example/Item1'),
-            meta: { title: '子级页面1', keepAlive: true }
+            meta: { title: '子级页面1' }
           },
           {
             path: 'item2',
             name: 'Item2',
             component: () => import('@/views/home/example/Item2'),
-            meta: { title: '子级页面2', keepAlive: true }
+            meta: { title: '子级页面2', noCache: true }
           }
         ]
       }

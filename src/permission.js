@@ -4,14 +4,16 @@ import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/storage' // get token from cookie
-import { getPageTitle, reWriteMatched } from '@/utils/router-util'
+import { addRoutes, getPageTitle, reWriteMatched } from '@/utils/router-util'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
+  //for cache router
   reWriteMatched(to)
+
   // start progress bar
   NProgress.start()
 
@@ -31,11 +33,7 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           const routes = await store.dispatch('permission/generateRoutes')
-          for (const route of routes) {
-            router.addRoute(route)
-          }
-          // 404 page must be placed at the end !!!
-          router.addRoute({ path: '*', redirect: '/404', hidden: true })
+          addRoutes(routes)
           next({ ...to, replace: true })
         } catch (e) {
           await store.dispatch('user/resetToken')
@@ -52,7 +50,7 @@ router.beforeEach(async(to, from, next) => {
       // in the free login whitelist, go directly
       next()
     } else {
-      // other pages that do not have permission to access are redirected to the login page.
+      // other pages that do not have auth to access are redirected to the login page.
       next(`/login?redirect=${to.path}`)
       NProgress.done()
     }

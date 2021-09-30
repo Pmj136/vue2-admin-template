@@ -1,10 +1,22 @@
 import { login, logout } from '@/api/user'
-import { getToken, setToken, removeToken, setMenus } from '@/utils/storage'
+import {
+  getToken,
+  setToken,
+  removeToken,
+  clearAll,
+  setMenus,
+  setPerms,
+  getPerms,
+  getRoles,
+  setRoles
+} from '@/utils/storage'
 import { resetRouter } from '@/router'
 
 const getDefaultState = () => {
   return {
-    token: getToken()
+    token: getToken(),
+    perms: getPerms() || [],
+    roles: getRoles() || []
   }
 }
 
@@ -16,6 +28,12 @@ const mutations = {
   },
   SET_TOKEN: (state, token) => {
     state.token = token
+  },
+  SET_PERMS: (state, perms) => {
+    state.perms = perms
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
   }
 }
 
@@ -27,8 +45,12 @@ const actions = {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
+        commit('SET_PERMS', data.permissions)
+        commit('SET_ROLES', data.roles)
         setToken(data.token)
         setMenus(data.menus)
+        setPerms(data.permissions)
+        setRoles(data.roles)
         resolve()
       }).catch(error => {
         reject(error)
@@ -40,7 +62,7 @@ const actions = {
   logout({ commit, dispatch, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
-        removeToken() // must remove  token  first
+        clearAll()
         resetRouter()
         commit('RESET_STATE')
         dispatch('permission/resetRoutes', {}, { root: true })

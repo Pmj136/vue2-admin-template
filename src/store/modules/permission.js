@@ -3,17 +3,10 @@ import { getMenus } from '@/utils/storage'
 import path from 'path'
 
 /**
- * Use meta.role to determine if the current user has permission
+ * Use meta.role to determine if the current user has auth
  * @param menus
  * @param route
  */
-// function hasPermission(roles, route) {
-//   if (route.meta && route.meta.roles) {
-//     return roles.some(role => route.meta.roles.includes(role))
-//   } else {
-//     return true
-//   }
-// }
 function hasPermission(menus, route) {
   if (route.path) {
     return menus.includes(route.path)

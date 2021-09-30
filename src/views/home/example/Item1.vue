@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>示例1</h2>
+    <h2 v-permission="['user:add']">示例1</h2>
     <input type="text" />
     <router-view/>
   </div>

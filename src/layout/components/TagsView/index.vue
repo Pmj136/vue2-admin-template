@@ -6,7 +6,6 @@
         ref="tag"
         :key="tag.path"
         :class="isActive(tag)?'active':''"
-        replace
         :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
         class="tags-view-item"
         @click.middle.native="!isAffix(tag)?closeSelectedTag(tag):''"
@@ -110,7 +109,7 @@ export default {
       if (name) {
         this.$store.dispatch('tagsView/addVisitedView', this.$route)
       }
-      if (meta.keepAlive) {
+      if (!meta.noCache) {
         this.$store.dispatch('tagsView/addCachedView', this.$route)
       }
       return false
