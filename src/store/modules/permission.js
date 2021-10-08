@@ -1,4 +1,4 @@
-import router, { asyncRoutes, constantRoutes } from '@/router'
+import { asyncRoutes, constantRoutes } from '@/router'
 import { getMenus } from '@/utils/storage'
 import path from 'path'
 

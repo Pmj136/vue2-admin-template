@@ -13,7 +13,7 @@ export default [
         path: 'perm',
         name: 'Permission',
         component: () => import('@/views/setting/Permission'),
-        meta: { title: '权限设置', icon: 'el-icon-s-help', keepAlive: true }
+        meta: { title: '权限设置', icon: 'el-icon-s-help', noCache: true }
       },
       {
         path: 'role',
