@@ -28,6 +28,9 @@ export function filterAsyncRoutes(routes, menus, basePath = '/') {
     if (hasPermission(menus, tmp)) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, menus, tmp.path)
+        if (!tmp.redirect && tmp.children.length) {
+          tmp.redirect = tmp.children[0].path
+        }
       }
       res.push(tmp)
     }
